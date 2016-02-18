@@ -3,7 +3,7 @@
 This gem is a plugin for [Acmesmith](https://github.com/sorah/acmesmith) and implements an automated `dns-01` challenge responder using OpenStack Designate.
 It currently only supports Designate v1 API and tested with [ConoHa](https://www.conoha.jp/conoha).
 
-With this plugin and Acmesmith, you can automate to authorize your domain hosted on OpenStack-base DNSaaS and request TLS certificates for the domains against [Let's Encrypt](https://letsencrypt.org/) and other CAs supporting the ACME protocol.
+With this plugin and Acmesmith, you can automate to authorize your domain hosted on an OpenStack-base DNSaaS and request TLS certificates for the domains against [Let's Encrypt](https://letsencrypt.org/) and other CAs supporting the ACME protocol.
 
 ## Usage
 ### Prerequisites
@@ -36,7 +36,7 @@ challenge_responders:
         auth_url: https://keystone.openstack.example.com/
         tenant_name: your-tenant
         username: conoha-chan
-        password: PASSW@RD
+        password: P@SSW0RD
       ttl: 5  # (optional) long TTL hinders re-authorization, but a DNSaaS provider may restrict short TTL
 ```
 
@@ -46,7 +46,8 @@ You are instructed how to use Acmesmith in its documentaion.
 Here are just example command lines to authorize `test.example.com` and request a certificate for it.
 
 ```sh
-acmesmith register maito:your@mail.address.example.com
+vi acmesmith.yml
+acmesmith register mailto:your@mail.address.example.com
 acmesmith authorize test.example.com
 acmesmith request test.example.com
 ```
