@@ -11,7 +11,7 @@ With this plugin and Acmesmith, you can automate to authorize your domain hosted
 - You need to sign up to an OpenStack-based DNSaaS, which allows you to use Designate v1 API to manage your zones.
 
 ### Preparation
-- Ask your DNSaaS provider to host a zone for your domain name. They will tell you the DNS contents servers that hosts the zone.
+- Ask your DNSaaS provider to host a zone for your domain name. They will tell you the DNS content servers that host the zone.
 - Ask your domain registrar to set the authoritative nameservers of your domain to the content servers provided by the DNSaaS.
 - Obtain `tenant_name` (or project name), `username` and `password` from the DNSaaS provider to use with Designate API. `auth_url` (OpenStack's authorization endpoint URI) is also necessary.
 
@@ -19,9 +19,9 @@ With this plugin and Acmesmith, you can automate to authorize your domain hosted
 Install `acmesith-designate` gem along with `acmesmith`. You can just do `gem install acmesith-designate` or use Bundler if you want.
 
 ### Configuration
-You can use `designate` challenge responder in your `acmesmith.yml`. General instructions about `acmesmith.yml` is available in the manual of Acmesmith.
+Use `designate` challenge responder in your `acmesmith.yml`. General instructions about `acmesmith.yml` is available in the manual of Acmesmith.
 
-Write your `tenant_name`, `username`, `password` and `auth_url` in `acmesmith.yml`, or if you don't want to write them down into a file, export these values as environment variables `OS_TENANT_NAME`, `OS_USERNAME` and so on.
+Write your `tenant_name`, `username`, `password` and `auth_url` in `acmesmith.yml`, or if you don't want to write them down into the file, export these values as the corresponding environment variables `OS_TENANT_NAME`, `OS_USERNAME`, `OS_PASSWORD` and `OS_AUTH_URL`.
 
 ```yaml
 endpoint: https://acme-v01.api.letsencrypt.org/
@@ -44,10 +44,11 @@ challenge_responders:
 
 You are instructed how to use Acmesmith in its documentaion.
 Here are just example command lines to authorize `test.example.com` and request a certificate for it.
+In this case you have to in advance set up `example.com` zone on DNSaaS.
 
 ```sh
 vi acmesmith.yml
-acmesmith register mailto:your@mail.address.example.com
+acmesmith register mailto:your.mail.address@example.net
 acmesmith authorize test.example.com
 acmesmith request test.example.com
 ```
