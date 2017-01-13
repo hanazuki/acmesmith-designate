@@ -51,7 +51,8 @@ module Acmesmith
       def config_yao(identity)
         Yao.config do
           auth_url(identity&.dig('auth_url') || ENV['OS_AUTH_URL'])
-          tenant_name(identity&.dig('tenant_name') || ENV['OS_TENANT_NAME'])
+          tenant_name(identity&.dig('project_name') || identity&.dig('tenant_name') ||
+                      ENV['OS_PROJECT_NAME'] || ENV['OS_TENANT_NAME'])
           username(identity&.dig('username') || ENV['OS_USERNAME'])
           password(identity&.dig('password') || ENV['OS_PASSWORD'])
         end
